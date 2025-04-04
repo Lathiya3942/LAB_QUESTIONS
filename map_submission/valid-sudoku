@@ -1,0 +1,16 @@
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board){
+        map<int, map<char, int>> rowMap, colMap, boxMap;
+    for (int r = 0; r < 9; r++) {
+        for (int c = 0; c < 9; c++) {
+            char num = board[r][c];
+            if (num == '.') continue;
+            int boxIndex = (r / 3) * 3 + (c / 3);
+            if (rowMap[r][num]++ > 0 || colMap[c][num]++ > 0 || boxMap[boxIndex][num]++ > 0)
+                return false;
+        }
+    }
+    return true;
+    }
+};
